@@ -26,3 +26,7 @@ images = ["squelette_et_cigarette.jpeg"]
       name = "Posts"
       url = "posts/"
       weight = 5
+
+[caches]
+    [caches.images]
+    dir = ':cacheDir/images'

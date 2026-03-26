@@ -5,17 +5,17 @@ draft: false
 description: "This logbook documents my journey through the Vinteum Bitcoin Developer Launchpad PoC."
 ---
 
-When I started this POC through the Vinteum Bitcoin Developer Launchpad, the goal was straightforward: make the `payjoin` crate compile and run correctly in a `no_std` environment. What followed was a deep dive into Rust's feature system, embedded targets, and the subtle ways that `std` leaks into code you think is clean.
+When I started this POC through the Vinteum Bitcoin Developer Launchpad, the goal was straightforward: make the payjoin crate compile and run correctly in a no_std environment. What followed was a deep dive into Rust's feature system, embedded targets, and the subtle ways that std leaks into code you think is clean.
 
 ## The problem
 
-Most Rust crates are written with `std` as an implicit assumption. Strings, collections, error traits, I/O — all of it silently pulls in the standard library. For hardware signers and embedded environments, this is a hard blocker. The `payjoin` crate needed to work without it.
+Most Rust crates are written with std as an implicit assumption. Strings, collections, error traits, I/O — all of it silently pulls in the standard library. For hardware signers and embedded environments, this is a hard blocker. The payjoin crate needed to work without it.
 
 The goal: make `cargo build -p payjoin --no-default-features --features "v2,alloc"` pass cleanly.
 
 ## First attempts
 
-The early builds failed in expected ways. The `wasm32-unknown-unknown` target broke immediately because `getrandom` doesn't support it without specific flags. Switching to `thumbv7em-none-eabihf` got further, but hit a wall at `secp256k1-sys`, which requires `arm-none-eabi-gcc` to compile its C bindings.
+The early builds failed in expected ways. The `wasm32-unknown-unknown` target broke immediately because getrandom doesn't support it without specific flags. Switching to `thumbv7em-none-eabihf` got further, but hit a wall at `secp256k1-sys`, which requires `arm-none-eabi-gcc` to compile its C bindings.
 
 The pattern became clear early: dependency graphs are deep, and `std` assumptions hide everywhere — in `openssl-sys`, in `serde_json`, in anything that touches I/O or time.
 
@@ -28,7 +28,7 @@ The core approach was systematic replacement:
 - `std::collections::BTreeMap` → `alloc::collections::BTreeMap`
 - `std::error::Error` → `core::error::Error`
 
-Any module touching I/O, HTTP, JSON, OHTTP, or system time got gated behind `#[cfg(feature = "std")]`. In `no_std` builds, those paths return a clear implementation error instead of silently failing or pulling in unwanted dependencies.
+Any module touching I/O, HTTP, JSON, OHTTP, or system time got gated behind `#[cfg(feature = "std")]`. In no_std builds, those paths return a clear implementation error instead of silently failing or pulling in unwanted dependencies.
 
 ## The tests lie
 
@@ -66,7 +66,7 @@ By the end of the POC, the following were fully functional under `no_std + alloc
 
 ## Commit history
 
-The final step was a full interactive rebase to clean the commit tree. Two months of "broke and fixed" commits were squashed into a coherent narrative showing the real progression of `no_std` support. The branch `poc/no-std-payjoin` reflects the work as it should be read, not as it was written.
+The final step was a full interactive rebase to clean the commit tree. Two months of "broke and fixed" commits were squashed into a coherent narrative showing the real progression of no_std support. The branch `poc/no-std-payjoin` reflects the work as it should be read, not as it was written.
 
 ## Takeaways
 
