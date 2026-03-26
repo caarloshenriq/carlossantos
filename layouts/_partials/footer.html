@@ -1,0 +1,15 @@
+<p style="position: fixed; bottom: 16px; left: 0; right: 0; text-align: center">
+    &copy; {{ now.Format (default "2006" .Site.Params.dateform.CopyrightDate) }}
+    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a> &#183; {{
+    .Site.Params.footerCopyright | safeHTML }} {{ if not
+    .Site.Params.footerHideThemeName -}} &#183; Made with
+    <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+    &amp;
+    <a
+        href="https://github.com/1bl4z3r/hermit-V2"
+        target="_blank"
+        rel="noopener"
+        >Hermit-V2</a
+    >
+    {{- end }}
+</p>

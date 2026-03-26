@@ -1,0 +1,28 @@
+baseURL = "https://carlossantos.dev/"
+title = "Carlos Santos"
+theme = "hermit-V2"
+
+[params]
+images = ["squelette_et_cigarette.jpeg"]
+  avatar = "squelette_et_cigarette.jpeg"
+  homeSubtitle = "Bitcoin developer. Rust enthusiast. Open-source contributor.<br>Currently learning and building in the open, working on rust-payjoin."
+  footerHideThemeName = true
+
+[params.author]
+  name = "Carlos Santos"
+
+[[params.socialLinks]]
+  name = "github"
+  url = "https://github.com/caarloshenriq"
+
+[[params.socialLinks]]
+  name = "x"
+  url = "https://twitter.com/caarlosBtc"
+  weight = 5
+
+
+[menu]
+    [[menu.main]]
+      name = "Posts"
+      url = "posts/"
+      weight = 5

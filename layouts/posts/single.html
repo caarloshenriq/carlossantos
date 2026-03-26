@@ -1,0 +1,78 @@
+{{ define "head" }}
+<style>
+    .site-main {
+        flex: 1;
+    }
+</style>
+{{- with .Site.Params.images }} {{- range first 1 . -}}
+<style>
+    .bg-img {
+        background-image: url("{{. | absURL}}");
+    }
+</style>
+{{- end -}} {{- end }} {{ end }} {{ define "header" }}{{ end }} {{ define "main"
+}}
+<div class="bg-img"></div>
+<main
+    class="site-main section-inner {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster {{- end -}}"
+>
+    <article class="thin">
+        <header class="post-header">
+            <div class="post-date">
+                <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+            </div>
+            <h1>{{ .Title }}</h1>
+        </header>
+        <a
+            href="javascript:history.back()"
+            style="
+                font-size: 13px;
+                opacity: 0.5;
+                text-decoration: none;
+                display: inline-block;
+                margin-bottom: 24px;
+            "
+            >← Back</a
+        >
+        <div class="post-description">
+            {{- with .Params.description }}
+            <p>{{ . }}</p>
+            {{- end }} {{- with .Params.author }}
+            <p>✍ {{ . }}</p>
+            {{- end }} {{- if .WordCount }}
+            <p>📄 {{ .WordCount }} words</p>
+            {{- end }}
+        </div>
+        <hr class="post-end" />
+        <div class="content">{{ .Content | safeHTML }}</div>
+        {{- if .Site.Params.relatedPosts }} {{- partial "related-posts.html" .
+        -}} {{- end }}
+    </article>
+
+    <div class="post-nav thin">
+        {{- with .NextInSection }}
+        <a class="next-post" href="{{ .Permalink }}">
+            <span class="post-nav-label"
+                >{{- partial "svg.html" (dict "context" . "name" "next")
+                -}}&nbsp;Newer</span
+            ><br /><span>{{ .Title }}</span>
+        </a>
+        {{- end }} {{- with .PrevInSection }}
+        <a class="prev-post" href="{{ .Permalink }}">
+            <span class="post-nav-label"
+                >Older&nbsp;{{- partial "svg.html" (dict "context" . "name"
+                "previous") -}}</span
+            ><br /><span>{{ .Title }}</span>
+        </a>
+        {{- end }}
+    </div>
+</main>
+{{ end }} {{ define "footer" }}
+<footer
+    id="site-footer"
+    class="section-inner thin {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster{{- end -}}"
+    style="margin-top: auto"
+>
+    {{- partial "footer.html" . -}}
+</footer>
+{{ end }}

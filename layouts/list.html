@@ -1,0 +1,60 @@
+{{ define "head" }}
+<style>
+    .site-main {
+        flex: 1;
+    }
+</style>
+{{- with .Site.Params.images }} {{- range first 1 . -}}
+<style>
+    .bg-img {
+        background-image: url("{{. | absURL}}");
+    }
+</style>
+{{- end -}} {{- end }} {{ end }} {{ define "header" }}{{ end }} {{ define
+"title" }}{{ .Title }}{{ end }} {{ define "main" }}
+<div class="bg-img"></div>
+<main
+    class="site-main section-inner thin {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster{{- end -}}"
+>
+    <h1>{{ .Title }}</h1>
+    <a
+        href="javascript:history.back()"
+        style="
+            font-size: 13px;
+            opacity: 0.5;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 32px;
+        "
+        >← Back</a
+    >
+    {{- range .Data.Pages.GroupByDate "2006" }} {{ $pages := len (.Pages) }} {{
+    $pages_pin := len ( where .Pages ".Params.pin" "eq" true) }} {{- if gt
+    $pages $pages_pin -}}
+    <div class="posts-group">
+        <div class="post-year" id="{{ .Key }}">{{ .Key }}</div>
+        <ul class="posts-list">
+            {{- range where .Pages ".Params.pin" "ne" true }}
+            <li class="post-item">
+                <a href="{{.Permalink}}">
+                    <span class="post-title">{{.Title}}</span>
+                    <span class="post-day"
+                        >{{ .Date.Format (default "Jan 2"
+                        .Site.Params.dateform.ShortDate) }}</span
+                    >
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </div>
+    {{- end -}} {{- end }}
+</main>
+{{ end }} {{ define "footer" }}
+<footer
+    id="site-footer"
+    class="section-inner thin {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster{{- end -}}"
+    style="margin-top: auto"
+>
+    {{- partial "footer.html" . -}}
+</footer>
+{{ end }}
