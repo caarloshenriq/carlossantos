@@ -3,7 +3,7 @@ title = "Carlos Santos"
 theme = "hermit-V2"
 
 [params]
-images = ["squelette_et_cigarette.jpeg"]
+images = ["eu.jpg"]
   avatar = "eu.jpg"
   homeSubtitle = "Bitcoin developer. Rust enthusiast. Open-source contributor.<br>Currently learning and building in the open, working on rust-payjoin."
   footerHideThemeName = true
