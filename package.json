@@ -1,0 +1,17 @@
+{
+  "name": "carlossantos",
+  "version": "1.0.0",
+  "description": "carlossantos.sh — personal site",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caarloshenriq/carlossantos.git"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0"
+  }
+}

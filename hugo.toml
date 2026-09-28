@@ -1,25 +1,125 @@
-baseURL = "https://www.carlossantos.sh/"
+baseURL = "https://carlossantos.sh/"
+languageCode = "en"
 title = "Carlos Santos"
-theme = "hermit-V2"
+theme = "hugo-texify3"
+enableRobotsTXT = true
+enableGitInfo = false
+rssLimit = 20
 
-[params]
-images = ["eu.jpg"]
-  avatar = "eu.jpg"
-  homeSubtitle = "Bitcoin developer. Rust enthusiast. Open-source contributor.<br>Currently learning and building in the open, working on rust-payjoin."
-  footerHideThemeName = true
+[pagination]
+pagerSize = 10
 
-[params.author]
-  name = "Carlos Santos"
+[taxonomies]
+# tags = "tags"
+# categories = "categories"
 
-[[params.socialLinks]]
-  name = "github"
-  url = "https://github.com/caarloshenriq"
-
-[[params.socialLinks]]
-  name = "x"
-  url = "https://twitter.com/caarlosBtc"
-  weight = 5
+[markup.goldmark.renderer]
+unsafe = true
 
 [caches]
-    [caches.images]
-    dir = ':cacheDir/images'
+  [caches.images]
+  dir = ':cacheDir/images'
+
+# ---------------------------------------------------------------------------
+# Params
+# ---------------------------------------------------------------------------
+[params]
+title = "Carlos Santos"
+author = "Carlos Santos"
+description = "Bitcoin reseacher and developer contributing full-time to open-source Bitcoin projects. Rust, transaction privacy, Payjoin."
+
+dateFormat = "2 January 2006"
+rootFontSize = "105%"
+toc = true
+math = true
+showWordCount = true
+showReadingTime = true
+numberedSubtitles = true
+emphasisWithDots = false
+enableDuckDuckGoSearchBox = true
+enableInlineShortcodes = true
+
+customCSS = ["css/custom.css"]
+customJS = []
+
+footnote = """
+"""
+
+  [params.commentEngine]
+  code = ""
+
+  [params.buymeacoffee]
+  code = ""
+
+  [params.sharingbuttons]
+  facebook = false
+  twitter = false
+  email = false
+  linkedin = false
+  reddit = false
+  whatsapp = false
+  hackernews = false
+  telegram = false
+
+# ---------------------------------------------------------------------------
+# Menu — redefined in full, since the theme ships its own defaults
+# ---------------------------------------------------------------------------
+[[menu.main]]
+identifier = "posts"
+name = "Blog"
+url = "/posts/"
+weight = 1
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M17,11H16a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm0,4H16a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2ZM11,9h6a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2ZM21,3H7A1,1,0,0,0,6,4V7H3A1,1,0,0,0,2,8V18a3,3,0,0,0,3,3H18a4,4,0,0,0,4-4V4A1,1,0,0,0,21,3ZM6,18a1,1,0,0,1-2,0V9H6Zm14-1a2,2,0,0,1-2,2H7.82A3,3,0,0,0,8,18V5H20Zm-9-4h1a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2Zm0,4h1a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2Z"/></svg>
+"""
+
+[[menu.main]]
+identifier = "whitepaper"
+name = "Whitepaper"
+url = "/bitcoin.pdf"
+weight = 2
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M20,8a1,1,0,0,0-.06-.34l0-.06a1,1,0,0,0-.19-.28h0l-5-5h0a1,1,0,0,0-.28-.19l-.1,0A1.1,1.1,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V8ZM15,5.41,16.59,7H15ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V8a1,1,0,0,0,1,1h4Z"/></svg>
+"""
+
+[[menu.main]]
+identifier = "pgp"
+name = "PGP"
+url = "https://keyserver.ubuntu.com/pks/lookup?search=82B003D3ABB16152&fingerprint=on&op=index"
+weight = 3
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M17,8V7A5,5,0,0,0,7,7V8a3,3,0,0,0-3,3v8a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V11A3,3,0,0,0,17,8ZM9,7a3,3,0,0,1,6,0V8H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"/></svg>
+"""
+
+[[menu.main]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/caarloshenriq"
+weight = 4
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M12,2A10,10,0,0,0,8.84,21.5c.5.08.66-.23.66-.5V19.31C6.73,19.91,6.14,18,6.14,18A2.69,2.69,0,0,0,5,16.5c-.91-.62.07-.6.07-.6a2.1,2.1,0,0,1,1.53,1,2.15,2.15,0,0,0,2.91.83,2.16,2.16,0,0,1,.63-1.34C7.7,16.17,5.3,15.31,5.3,11.5a3.87,3.87,0,0,1,1-2.71,3.58,3.58,0,0,1,.1-2.64s.84-.27,2.75,1a9.63,9.63,0,0,1,5,0c1.91-1.29,2.75-1,2.75-1a3.58,3.58,0,0,1,.1,2.64,3.87,3.87,0,0,1,1,2.71c0,3.82-2.4,4.66-4.68,4.91a2.39,2.39,0,0,1,.69,1.85V21c0,.27.16.59.67.5A10,10,0,0,0,12,2Z"/></svg>
+"""
+
+[[menu.main]]
+identifier = "x"
+name = "X"
+url = "https://x.com/caarlosBtc"
+weight = 5
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M18.9,1.15h3.68l-8.04,9.19L24,22.85h-7.41l-5.8-7.58-6.64,7.58H.46l8.6-9.83L0,1.15H7.6l5.24,6.93ZM17.61,20.64h2.04L6.49,3.24H4.3Z"/></svg>
+"""
+
+[[menu.main]]
+identifier = "rss"
+name = "RSS"
+url = "/index.xml"
+weight = 6
+pre = """
+<svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a1,1,0,0,1-1.42-1.42,1,1,0,0,1,1.42,0A1,1,0,0,1,5.71,19.71ZM5,12a1,1,0,0,0,0,2,5,5,0,0,1,5,5,1,1,0,0,0,2,0,7,7,0,0,0-7-7ZM5,8a1,1,0,0,0,0,2,9,9,0,0,1,9,9,1,1,0,0,0,2,0,11.08,11.08,0,0,0-3.22-7.78A11.08,11.08,0,0,0,5,8Zm10.61.39A15.11,15.11,0,0,0,5,4,1,1,0,0,0,5,6,13,13,0,0,1,18,19a1,1,0,0,0,2,0A15.11,15.11,0,0,0,15.61,8.39Z"/></svg>
+"""

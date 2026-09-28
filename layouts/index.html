@@ -1,0 +1,24 @@
+{{ define "main" }}
+<main id="main" class="home">
+    <div class="content home-content">
+        {{ with .Site.GetPage "_index.md" }}
+            {{ .Content }}
+        {{ end }}
+
+        {{ with first 5 (where .Site.RegularPages "Type" "posts") }}
+        <h2>Recent posts</h2>
+        <ul class="recent-posts">
+          {{ range . }}
+          <li>
+            <a href="{{ .RelPermalink }}">
+              <span>{{ .Title }}</span>
+              <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format $.Site.Params.dateFormat }}</time>
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+        <p><a class="link" href="/posts/">All posts &rarr;</a></p>
+        {{ end }}
+    </div>
+</main>
+{{ end }}
